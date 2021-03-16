@@ -57,7 +57,21 @@ namespace VotingApp.Controllers
 
         public void Post(Users val)
         {
-            data.Add(val);
+            using (userdbEntities entities = new userdbEntities())
+            {
+                UserDataAccess.Users users = new UserDataAccess.Users();
+                users.UserId = val.UserId;
+                users.FirstName = val.FirstName;
+                users.LastName = val.LastName;
+                users.Email = val.Email;
+                users.User_Password = val.User_Password;
+                users.License = val.License;
+                users.DOB = val.DOB;
+                users.Voting_Status = val.Voting_Status;
+                users.User_Image = val.User_Image;
+                entities.Users.Add(users);
+                entities.SaveChanges();
+            }
         }
 
 

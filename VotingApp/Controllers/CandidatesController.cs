@@ -62,11 +62,18 @@ namespace VotingApp.Controllers
         // POST: api/Candidates
         public void Post(Candidates val)
         {
-           // _conn = new SqlConnection("Server=tcp:mobilevoting.database.windows.net,1433;Initial Catalog=votingdb;Persist Security Info=False;User ID=navneet;Password=Voting@24;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-           // var query = "INSERT INTO Cndidates (CandidateId,CandidateName) ";
-            data.Add(val);
-           
-           
+            // _conn = new SqlConnection("Server=tcp:mobilevoting.database.windows.net,1433;Initial Catalog=votingdb;Persist Security Info=False;User ID=navneet;Password=Voting@24;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            // var query = "INSERT INTO Cndidates (CandidateId,CandidateName) ";
+            //  data.Add(val);
+            using (candidatedbEntities entities = new candidatedbEntities())
+            {
+                Candidates candidates = new Candidates();
+                candidates.CandidateId = val.CandidateId;
+                candidates.CandidateName = val.CandidateName;
+                entities.Candidates.Add(candidates);
+                entities.SaveChanges();
+            }
+
         }
 
         // PUT: api/Candidates/5
