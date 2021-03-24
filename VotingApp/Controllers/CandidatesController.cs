@@ -11,22 +11,7 @@ namespace VotingApp.Controllers
 {
     public class CandidatesController : ApiController
     {
-        private SqlConnection _conn;
-        private SqlDataAdapter _adapter;
-        /*
-        List<Candidate> candidate = new List<Candidate>();
-        // GET: api/Candidates
-        public CandidatesController()
-        {
-            candidate.Add(new Candidate { CandidateId = 1, CandidateName = "Doug Ford" });
-            candidate.Add(new Candidate { CandidateId = 2, CandidateName = "Patrick Brown" });
-        }
-
-        public List<Candidate> Get()
-        {
-            return candidate;
-        }
-        */
+   
     
         List<Candidates> data = new List<Candidates>();
 
@@ -67,8 +52,20 @@ namespace VotingApp.Controllers
             //  data.Add(val);
             using (candidatedbEntities entities = new candidatedbEntities())
             {
+                var x = entities.Candidates.ToList();
                 Candidates candidates = new Candidates();
                 candidates.CandidateId = val.CandidateId;
+                foreach (CandidateDataAccess.Candidates c in x)
+                {
+                     if(val.CandidateId == c.CandidateId)
+                    {
+                    //    var currentVotes = c.Vote;
+                    //    currentVotes += 1; // Updating for adding a new vote
+                   //     c.Vote = currentVotes;
+                    }
+                }
+
+
                 candidates.CandidateName = val.CandidateName;
                 entities.Candidates.Add(candidates);
                 entities.SaveChanges();

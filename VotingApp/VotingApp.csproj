@@ -260,8 +260,10 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CandidatesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -386,6 +388,10 @@
     <ProjectReference Include="..\UserDataAccess\UserDataAccess.csproj">
       <Project>{19949736-24e8-4e71-a2d2-3720fd70409c}</Project>
       <Name>UserDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VoteDataAccess\VoteDataAccess.csproj">
+      <Project>{0a627ed0-4704-4518-8d49-3fefc215d449}</Project>
+      <Name>VoteDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

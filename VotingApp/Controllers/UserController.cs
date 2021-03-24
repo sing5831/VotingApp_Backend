@@ -46,7 +46,7 @@ namespace VotingApp.Controllers
 
                     return data;
            
-                }
+        }
 
         //     using(userdbEntities entities = new userdbEntities())
         //  {
