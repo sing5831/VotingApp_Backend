@@ -55,7 +55,7 @@ namespace VotingApp.Controllers
         // return entities.User.ToList();
         //}
 
-        public void Post(Users val)
+        public String Post(Users val)
         {
             using (userdbEntities entities = new userdbEntities())
             {
@@ -72,6 +72,8 @@ namespace VotingApp.Controllers
                 entities.Users.Add(users);
                 entities.SaveChanges();
             }
+
+            return val.UserId.ToString() + val.Email + val.FirstName;
         }
 
 

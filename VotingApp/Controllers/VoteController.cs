@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using UserDataAccess;
 using VoteDataAccess;
 
 namespace VotingApp.Controllers
@@ -39,7 +40,7 @@ namespace VotingApp.Controllers
 
         }
 
-        public void Post(Vote val)
+        public void Post(CastedVote val)
         {
           
             using (votedbEntities entities = new votedbEntities())
@@ -47,6 +48,7 @@ namespace VotingApp.Controllers
                 var x = entities.Votes.ToList();
                 Vote vote = new Vote();
                 vote.CandidateId = val.CandidateId;
+                vote.CandidateName = val.CandidateName;
                 foreach (VoteDataAccess.Vote c in x)
                 {
                     if (val.CandidateId == c.CandidateId)
@@ -57,13 +59,40 @@ namespace VotingApp.Controllers
                    
                     }
                 }
-                vote.CandidateName = val.CandidateName;
+                using (userdbEntities uentities = new userdbEntities())
+                {
+                    var y = uentities.Users.ToList();
+                    UserDataAccess.Users users = new UserDataAccess.Users();
+                    foreach (UserDataAccess.Users u in y)
+                    {
+                        if (val.UserEmail == u.Email)
+                        {
+                            u.Voting_Status = true;
 
-              //  entities.Votes.Add(vote);
-                entities.SaveChanges();
+                        }
+                    }
+                    uentities.SaveChanges();                 
+                }
+                
+
+                    //  entities.Votes.Add(vote);
+                    entities.SaveChanges();
+                
             }
 
         }
+
+    }
+
+    public class CastedVote
+    {
+        public int VoteId { get; set; }
+        public Nullable<int> CandidateId { get; set; }
+        public string CandidateName { get; set; }
+        public Nullable<int> Votes { get; set; }
+
+        public int UserId { get; set; }
+        public String UserEmail { get; set; }
 
     }
 }

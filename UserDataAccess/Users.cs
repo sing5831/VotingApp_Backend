@@ -25,5 +25,9 @@ namespace UserDataAccess
         public byte[] User_Image { get; set; }
         public string User_Password { get; set; }
         public Nullable<bool> Voting_Status { get; set; }
+
+
     }
+
+   
 }
