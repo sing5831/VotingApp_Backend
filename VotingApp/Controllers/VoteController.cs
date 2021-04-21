@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -68,10 +70,12 @@ namespace VotingApp.Controllers
                         if (val.UserEmail == u.Email)
                         {
                             u.Voting_Status = true;
+                           
 
                         }
                     }
-                    uentities.SaveChanges();                 
+                    uentities.SaveChanges();
+                    SendEmail(val.UserEmail);
                 }
                 
 
@@ -80,6 +84,27 @@ namespace VotingApp.Controllers
                 
             }
 
+        }
+
+        public void SendEmail(string email)
+        {
+           
+            var mailMessage = new MimeMessage();
+            mailMessage.From.Add(new MailboxAddress("Capstone Project 2021", "navcapstoneproject2021@gmail.com"));
+            mailMessage.To.Add(new MailboxAddress("Voter", email));
+            mailMessage.Subject = "subject";
+            mailMessage.Body = new TextPart("plain")
+            {
+                Text = "Hello, Your vote has been recored successfully."
+            };
+
+            using (var smtpClient = new SmtpClient())
+            {
+                smtpClient.Connect("smtp.gmail.com", 465, true);
+                smtpClient.Authenticate("nsplaha.24@gmail.com", "gurmeetplaha");
+                smtpClient.Send(mailMessage);
+                smtpClient.Disconnect(true);
+            }
         }
 
     }

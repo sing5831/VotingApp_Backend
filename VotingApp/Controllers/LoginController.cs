@@ -25,23 +25,21 @@ namespace VotingApp.Controllers
                 {
                     if (u.Email == val.Email && u.User_Password == val.User_Password)
                     {
+                        result = "Success";
                      
                         if (u.Voting_Status == true)
                         {
                                 result = "Voted";
-                        }
-                        else
-                        {
-
-                            result = "Success";
                             break;
                         }
+                    
                     }
                   
                     else
                     {
                         result = "Failure";
                     }
+                  
                 }
                    
             }
