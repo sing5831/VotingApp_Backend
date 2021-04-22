@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<VoteDataAccess.Vote>
 
 @{
-    ViewBag.Title = "Election Results";
+    ViewBag.Title = "Manage Candidates";
 }
 
-<h2>Election Results</h2>
+<h2>Manage Candidates</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -14,9 +17,7 @@
         <th>
             @Html.DisplayNameFor(model => model.CandidateName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Votes)
-        </th>
+      
         <th></th>
     </tr>
 
@@ -28,10 +29,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.CandidateName)
         </td>
+       
         <td>
-            @Html.DisplayFor(modelItem => item.Votes)
+            @Html.ActionLink("Edit", "Edit", new { id=item.VoteId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VoteId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VoteId })
         </td>
-      
     </tr>
 }
 

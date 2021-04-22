@@ -90,18 +90,25 @@ namespace VotingApp.Controllers
         {
            
             var mailMessage = new MimeMessage();
-            mailMessage.From.Add(new MailboxAddress("Capstone Project 2021", "navcapstoneproject2021@gmail.com"));
-            mailMessage.To.Add(new MailboxAddress("Voter", email));
-            mailMessage.Subject = "subject";
+            mailMessage.From.Add(new MailboxAddress("Voting App", "capstonevotingproject2021@gmail.com"));
+            mailMessage.To.Add(new MailboxAddress("Voter", "nsplaha.24@gmail.com"));
+            mailMessage.Subject = "Voting Confirmation";
             mailMessage.Body = new TextPart("plain")
             {
-                Text = "Hello, Your vote has been recored successfully."
+                Text = "Dear Voter,            " +
+                "                                                          "+
+                "  This email is a confirmation that your vote has been recorded through the mobile voting app.              " +
+                "  Thank You for Voting.              " +
+                "                                                   "+
+                "  Regards,                                         " +
+                "  Capstone Project 2021       " +
+                "  Sheridan College            "
             };
 
             using (var smtpClient = new SmtpClient())
             {
                 smtpClient.Connect("smtp.gmail.com", 465, true);
-                smtpClient.Authenticate("nsplaha.24@gmail.com", "gurmeetplaha");
+                smtpClient.Authenticate("capstonevotingproject2021@gmail.com", "votingapp2021");
                 smtpClient.Send(mailMessage);
                 smtpClient.Disconnect(true);
             }
