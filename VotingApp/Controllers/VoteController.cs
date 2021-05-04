@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
-using UserDataAccess;
+using RegisterDataAccess;
 using VoteDataAccess;
 
 namespace VotingApp.Controllers
@@ -61,17 +62,15 @@ namespace VotingApp.Controllers
                    
                     }
                 }
-                using (userdbEntities uentities = new userdbEntities())
+                using (RegisterDataAccess.votingdbEntities uentities = new RegisterDataAccess.votingdbEntities())
                 {
-                    var y = uentities.Users.ToList();
-                    UserDataAccess.Users users = new UserDataAccess.Users();
-                    foreach (UserDataAccess.Users u in y)
+                    var y = uentities.RegisterUsers.ToList();
+                    RegisterDataAccess.RegisterUser users = new RegisterDataAccess.RegisterUser();
+                    foreach (RegisterDataAccess.RegisterUser u in y)
                     {
                         if (val.UserEmail == u.Email)
                         {
-                            u.Voting_Status = true;
-                           
-
+                            u.Voting_Status = true;                          
                         }
                     }
                     uentities.SaveChanges();
@@ -91,7 +90,7 @@ namespace VotingApp.Controllers
            
             var mailMessage = new MimeMessage();
             mailMessage.From.Add(new MailboxAddress("Voting App", "capstonevotingproject2021@gmail.com"));
-            mailMessage.To.Add(new MailboxAddress("Voter", "nsplaha.24@gmail.com"));
+            mailMessage.To.Add(new MailboxAddress("Voter", email));
             mailMessage.Subject = "Voting Confirmation";
             mailMessage.Body = new TextPart("plain")
             {
@@ -112,6 +111,17 @@ namespace VotingApp.Controllers
                 smtpClient.Send(mailMessage);
                 smtpClient.Disconnect(true);
             }
+        }
+
+        public string decrypt(string encrypt_string)
+        {
+            var result = "";
+            // byte[] bytes = Encoding.ASCII.GetBytes(encrypt_string);
+
+            EncClass encryptionClass = new EncClass();
+            result = encryptionClass.Decrypt(encrypt_string, "Password");
+
+            return result;
         }
 
     }

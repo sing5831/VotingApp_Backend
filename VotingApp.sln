@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateDataAccess", "Cand
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoteDataAccess", "VoteDataAccess\VoteDataAccess.csproj", "{0A627ED0-4704-4518-8D49-3FEFC215D449}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterDataAccess", "RegisterDataAccess\RegisterDataAccess.csproj", "{A2506802-0F24-42BD-8A11-82C12898579F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0A627ED0-4704-4518-8D49-3FEFC215D449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A627ED0-4704-4518-8D49-3FEFC215D449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A627ED0-4704-4518-8D49-3FEFC215D449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2506802-0F24-42BD-8A11-82C12898579F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2506802-0F24-42BD-8A11-82C12898579F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2506802-0F24-42BD-8A11-82C12898579F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2506802-0F24-42BD-8A11-82C12898579F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

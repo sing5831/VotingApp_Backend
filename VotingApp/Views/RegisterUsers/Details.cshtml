@@ -1,0 +1,66 @@
+﻿@model RegisterDataAccess.RegisterUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RegisterUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VoterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voting_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voting_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

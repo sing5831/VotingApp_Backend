@@ -5,7 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using System.Web.Http;
-using UserDataAccess;
+using RegisterDataAccess;
+
 
 namespace VotingApp.Controllers
 {
@@ -14,16 +15,16 @@ namespace VotingApp.Controllers
     {
      
 
-        public String Post(Users val)
+        public String Post(RegisterUser val)
         {
             var result = "test";
-            using (userdbEntities entities = new userdbEntities())
+            using (RegisterDataAccess.votingdbEntities entities = new RegisterDataAccess.votingdbEntities())
             {
-                UserDataAccess.Users users = new UserDataAccess.Users();
-                var x = entities.Users.ToList();
-                foreach (UserDataAccess.Users u in x)
+                RegisterDataAccess.RegisterUser registerUser = new RegisterDataAccess.RegisterUser();
+                var x = entities.RegisterUsers.ToList();
+                foreach (RegisterDataAccess.RegisterUser u in x)
                 {
-                    if (u.Email == val.Email && u.User_Password == val.User_Password)
+                    if (val.Email == u.Email && val.User_Password == u.User_Password)
                     {
                         result = "Success";
                      
@@ -32,15 +33,14 @@ namespace VotingApp.Controllers
                                 result = "Voted";
                             break;
                         }
-                    
+                        
+
                     }
-                  
-                    else
-                    {
-                        result = "Failure";
-                    }
-                  
+                 
+
                 }
+
+
                    
             }
             return result;

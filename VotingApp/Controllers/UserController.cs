@@ -12,7 +12,7 @@ namespace VotingApp.Controllers
     {
         List<VotingApp.Users> data = new List<VotingApp.Users>();
         public IEnumerable<VotingApp.Users> Get()
-                {
+        {
                     
                     using (userdbEntities entities = new userdbEntities())
 
@@ -55,28 +55,37 @@ namespace VotingApp.Controllers
         // return entities.User.ToList();
         //}
 
-        public String Post(Users val)
+        public String Post(Register val)
         {
             using (userdbEntities entities = new userdbEntities())
             {
                 UserDataAccess.Users users = new UserDataAccess.Users();
-                users.UserId = val.UserId;
-                users.FirstName = val.FirstName;
-                users.LastName = val.LastName;
+                users.UserId = val.User_Id;
+                
                 users.Email = val.Email;
                 users.User_Password = val.User_Password;
-                users.License = val.License;
-                users.DOB = val.DOB;
+                
                 users.Voting_Status = val.Voting_Status;
-                users.User_Image = val.User_Image;
+                
                 entities.Users.Add(users);
                 entities.SaveChanges();
             }
 
-            return val.UserId.ToString() + val.Email + val.FirstName;
+            return val.Email;
         }
 
 
 
+    }
+
+    public class Register
+    {
+        public int User_Id { get; set; }
+        public string Email { get; set; }
+        public string User_Password { get; set; }
+        public string VoterId { get; set; }
+        public Nullable<int> PIN { get; set; }
+        public string DeviceId { get; set; }
+        public Nullable<bool> Voting_Status { get; set; }
     }
 }
