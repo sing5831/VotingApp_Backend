@@ -51,7 +51,8 @@ namespace VotingApp.Controllers
                 var x = entities.Votes.ToList();
                 Vote vote = new Vote();
                 vote.CandidateId = val.CandidateId;
-                vote.CandidateName = val.CandidateName;
+                var cname = decrypt(val.CandidateName);
+                vote.CandidateName = cname;
                 foreach (VoteDataAccess.Vote c in x)
                 {
                     if (val.CandidateId == c.CandidateId)

@@ -63,6 +63,7 @@ namespace VotingApp.Controllers
         // POST: api/Register
         public string Post(RegisterUser val)
         {
+            string status = "failure";
             using (RegisterDataAccess.votingdbEntities entities = new RegisterDataAccess.votingdbEntities())
             {
                 RegisterDataAccess.RegisterUser users = new RegisterDataAccess.RegisterUser();
@@ -72,19 +73,21 @@ namespace VotingApp.Controllers
                 RegisterDataAccess.RegisterUser registerUser = new RegisterDataAccess.RegisterUser();
                 foreach (RegisterDataAccess.RegisterUser u in y)
                 {
-                    if (val.Email == u.Email && val.PIN == u.PIN)
+                    if (decrypt(val.Email) == u.Email && val.PIN == u.PIN && u.DeviceId == null)
                     {
-                         var pass = decrypt(val.User_Password);
-                         u.User_Password = pass;
-                      //  u.User_Password = val.User_Password;
-                           u.DeviceId = val.DeviceId;
-
+                     //    var pass = decrypt(val.User_Password);
+                     //    u.User_Password = pass;
+                          u.User_Password = val.User_Password;
+                        var d_deviceid = decrypt(val.DeviceId);
+                           u.DeviceId = d_deviceid;
+                        status = "success";
                     }
+                   
                 }
                 entities.SaveChanges();
             }
 
-            return val.Email;
+            return status;
 
         }
 

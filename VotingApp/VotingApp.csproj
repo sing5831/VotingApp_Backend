@@ -271,9 +271,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CandidatesController.cs" />
-    <Compile Include="Controllers\EditCandidatesController.cs" />
     <Compile Include="Controllers\EncClass.cs" />
-    <Compile Include="Controllers\EncryptionClass.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageCandidateController.cs" />

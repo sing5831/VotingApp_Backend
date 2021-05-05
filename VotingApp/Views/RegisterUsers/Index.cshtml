@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<RegisterDataAccess.RegisterUser>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Register User";
 }
 
-<h2>Index</h2>
+<h2>Register User</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -17,9 +17,7 @@
         <th>
             @Html.DisplayNameFor(model => model.User_Password)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VoterId)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.PIN)
         </th>
@@ -40,9 +38,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.User_Password)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VoterId)
-        </td>
+     
         <td>
             @Html.DisplayFor(modelItem => item.PIN)
         </td>
@@ -53,7 +49,6 @@
             @Html.DisplayFor(modelItem => item.Voting_Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.User_Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.User_Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.User_Id })
         </td>
