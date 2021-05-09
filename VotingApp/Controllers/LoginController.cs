@@ -30,35 +30,58 @@ namespace VotingApp.Controllers
             var result = "Failure";
 
 
-            DateTime startdate = new DateTime(2021, 05, 01, 12, 00, 00);
-            DateTime enddate = new DateTime(2021, 05, 15, 11, 00, 00);
+         //   DateTime startdate = new DateTime(2021, 05, 01, 12, 00, 00);
+         //   DateTime enddate = new DateTime(2021, 05, 15, 11, 00, 00);
+
             DateTime currentdate = DateTime.Now;
 
-            if (currentdate >= startdate && currentdate <= enddate)
+            using (ElectionStartEndDataAccess.startenddbEntities startenddbEntities = new ElectionStartEndDataAccess.startenddbEntities())
             {
-
-                using (RegisterDataAccess.votingdbEntities entities = new RegisterDataAccess.votingdbEntities())
+                ElectionStartEndDataAccess.ElectionStartEnd startEnd = new ElectionStartEndDataAccess.ElectionStartEnd();
+                var y = startenddbEntities.ElectionStartEnds.ToList();
+                foreach (ElectionStartEndDataAccess.ElectionStartEnd a in y)
                 {
-                    RegisterDataAccess.RegisterUser registerUser = new RegisterDataAccess.RegisterUser();
-                    var x = entities.RegisterUsers.ToList();
-                    foreach (RegisterDataAccess.RegisterUser u in x)
+                    if (currentdate > a.EndDate)
                     {
-                        if (decrypt(val.Email) == u.Email && val.User_Password == u.User_Password && decrypt(val.DeviceId) == u.DeviceId)
+                        result = "election_over";
+                    }
+                    else
+                    {
+                        result = "check_later";
+                    }
+                    //        }
+                    //           }
+
+
+                    if (currentdate >= a.StartDate && currentdate <= a.EndDate)
+                    {
+
+                        using (RegisterDataAccess.votingdbEntities entities = new RegisterDataAccess.votingdbEntities())
                         {
-                            result = "Success";
-
-                            if (u.Voting_Status == true)
+                            RegisterDataAccess.RegisterUser registerUser = new RegisterDataAccess.RegisterUser();
+                            var x = entities.RegisterUsers.ToList();
+                            foreach (RegisterDataAccess.RegisterUser u in x)
                             {
-                                result = "Voted";
-                                break;
-                            }
+                                if (decrypt(val.Email) == u.Email && val.User_Password == u.User_Password && decrypt(val.DeviceId) == u.DeviceId)
+                                {
+                                    result = "Success";
 
+                                    if (u.Voting_Status == true)
+                                    {
+                                        result = "Voted";
+                                        break;
+                                    }
+
+
+                                }
+                            }
 
                         }
                     }
-
                 }
             }
+
+            /*
             else
             {
                 if(currentdate >= enddate)
@@ -71,7 +94,7 @@ namespace VotingApp.Controllers
                 }
             }
 
-            
+            */
 
 
             return result;

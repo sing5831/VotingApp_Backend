@@ -271,6 +271,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CandidatesController.cs" />
+    <Compile Include="Controllers\ElectionTimeController.cs" />
     <Compile Include="Controllers\EncClass.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -395,6 +396,11 @@
     <Content Include="Views\RegisterUsers\Details.cshtml" />
     <Content Include="Views\RegisterUsers\Edit.cshtml" />
     <Content Include="Views\RegisterUsers\Index.cshtml" />
+    <Content Include="Views\ElectionTime\Create.cshtml" />
+    <Content Include="Views\ElectionTime\Delete.cshtml" />
+    <Content Include="Views\ElectionTime\Details.cshtml" />
+    <Content Include="Views\ElectionTime\Edit.cshtml" />
+    <Content Include="Views\ElectionTime\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -419,6 +425,10 @@
     <ProjectReference Include="..\CandidateDataAccess\CandidateDataAccess.csproj">
       <Project>{ee3caaf9-eed5-49c6-bb76-7b8789cbaba6}</Project>
       <Name>CandidateDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElectionStartEndDataAccess\ElectionStartEndDataAccess.csproj">
+      <Project>{cfb5d35b-2eb0-45d4-9745-a8d537967a09}</Project>
+      <Name>ElectionStartEndDataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\RegisterDataAccess\RegisterDataAccess.csproj">
       <Project>{a2506802-0f24-42bd-8a11-82c12898579f}</Project>
